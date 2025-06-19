@@ -4,10 +4,10 @@ using PDFNote.Model;
 
 public record Device(DeviceSKU SKU, Orientation Orientation, Handedness Handedness)
 {
-    public int Height { get => DeviceUtils.GetDeviceDimensions(SKU, Orientation).Height; }
-    public int Width {get => DeviceUtils.GetDeviceDimensions(SKU, Orientation).Width; }
-}
 
+    internal int Height { get => DeviceUtils.GetDeviceDimensions(SKU, Orientation).Height; }
+    internal int Width {get => DeviceUtils.GetDeviceDimensions(SKU, Orientation).Width; }
+}
 
 /// <summary>
 /// The model of device to generate the PDF for.
