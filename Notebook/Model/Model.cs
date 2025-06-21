@@ -10,5 +10,5 @@ public record PageDimensions (int Height, int Width);
 
 public class Spec
 {
-    public Device Device { get; set; }
+    public Device? Device { get; set; }
 }

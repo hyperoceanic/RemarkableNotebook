@@ -4,11 +4,11 @@ using Notebook;
 using System.Diagnostics;
 
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Remarkable Notebook Builder");
 
 if (args.Length == 0)
 {
-    Console.WriteLine("Usage: PDFNote.exe sample.ymal");
+    Console.WriteLine("Usage: Notebook.exe sample.ymal");
     Console.WriteLine("Please provide the name of a config file (eg 'sample.yaml').");
     Console.WriteLine("If the file does not exist, it will be created for you with some default values.");
     return;
