@@ -14,13 +14,20 @@ if (args.Length == 0)
     return;
 }
 
-var configFile = args[0];
+var configFileName = args[0];
 
-if (!File.Exists(configFile))
+if (!File.Exists(configFileName))
 {
-    Console.WriteLine($"Creating sample - {configFile}.");
+    Console.WriteLine($"Creating sample - {configFileName}.");
     var sample = ModelPersister.CreateSample();
-    ModelPersister.Save(sample, configFile);
+    ModelPersister.Save(sample, configFileName);
     Console.WriteLine(sample);
 }
+
+
+Spec spec = ModelPersister.Load(configFileName);
+
+NotebookBuilder.Build(spec);
+
+
 

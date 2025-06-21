@@ -40,7 +40,10 @@ public static class ModelPersister
     {
         var result = new Spec();
 
-        result.Device = new(DeviceSKU.RemarkablePaperPro, Orientation.Portrait, Handedness.Right);
+        result.Device = new Device();
+        result.Device.sku = DeviceSKU.RemarkablePaperPro;
+        result.Device.orientation = Orientation.Portrait;
+        result.Device.handedness = Handedness.Right;
 
         return result;
     }

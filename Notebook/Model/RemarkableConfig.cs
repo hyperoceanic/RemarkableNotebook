@@ -1,10 +1,15 @@
 namespace Notebook;
 
-public record Device(DeviceSKU sku, Orientation orientation, Handedness handedness)
+public class Device
 {
 
+    public DeviceSKU sku { get; set; }
+    public Orientation orientation { get; set; }
+     public Handedness handedness { get; set; }
     internal int Height { get => DeviceUtils.GetDeviceDimensions(sku, orientation).Height; }
-    internal int Width {get => DeviceUtils.GetDeviceDimensions(sku, orientation).Width; }
+    internal int Width { get => DeviceUtils.GetDeviceDimensions(sku, orientation).Width; }
+
+    internal int DPi { get => DeviceUtils.DPI(sku); }
 }
 
 /// <summary>
@@ -42,6 +47,14 @@ public static class DeviceUtils
         (DeviceSKU.Remarkable2, Orientation.Portrait) => new(1872, 1404),
         (DeviceSKU.Remarkable2, Orientation.Landscape) => new(1404, 1872),
         (_, _) => new(0, 0)
+    };
+
+
+    public static int DPI(DeviceSKU sku) => sku switch
+    {
+        DeviceSKU.RemarkablePaperPro => 229,
+        DeviceSKU.Remarkable2 => 226,
+        _ => 229
     };
 
 }
