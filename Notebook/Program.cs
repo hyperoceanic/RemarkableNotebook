@@ -1,6 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
+
+using Notebook;
 using System.Diagnostics;
-using PDFNote.Model;
+
 
 Console.WriteLine("Hello, World!");
 

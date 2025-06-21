@@ -1,4 +1,4 @@
-namespace PDFNote.Model;
+namespace Notebook;
 
 public enum Orientation
 {
@@ -10,5 +10,5 @@ public record PageDimensions (int Height, int Width);
 
 public class Spec
 {
-    public Remarkable.Device Device { get; set; }
+    public Device Device { get; set; }
 }

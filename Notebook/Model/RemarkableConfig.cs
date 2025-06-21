@@ -1,12 +1,10 @@
-namespace PDFNote.Remarkable;
+namespace Notebook;
 
-using PDFNote.Model;
-
-public record Device(DeviceSKU SKU, Orientation Orientation, Handedness Handedness)
+public record Device(DeviceSKU sku, Orientation orientation, Handedness handedness)
 {
 
-    internal int Height { get => DeviceUtils.GetDeviceDimensions(SKU, Orientation).Height; }
-    internal int Width {get => DeviceUtils.GetDeviceDimensions(SKU, Orientation).Width; }
+    internal int Height { get => DeviceUtils.GetDeviceDimensions(sku, orientation).Height; }
+    internal int Width {get => DeviceUtils.GetDeviceDimensions(sku, orientation).Width; }
 }
 
 /// <summary>
@@ -36,7 +34,7 @@ public static class DeviceUtils
     /// <param name="sku">Model of device to generate PDF For</param>
     /// <param name="orientation">Portrait or Landscape</param>
     /// <returns></returns>
-    public static PageDimensions GetDeviceDimensions(DeviceSKU sku, PDFNote.Model.Orientation orientation) =>
+    public static PageDimensions GetDeviceDimensions(DeviceSKU sku, Orientation orientation) =>
     (sku, orientation) switch
     {
         (DeviceSKU.RemarkablePaperPro, Orientation.Portrait) => new(2160, 1620),

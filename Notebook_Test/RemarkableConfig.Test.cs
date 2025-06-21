@@ -1,9 +1,8 @@
 namespace Notebook_Test;
 
-using FluentAssertions;
+using Notebook;
 
-using PDFNote.Model;
-using PDFNote.Remarkable;
+using FluentAssertions;
 
 public class RemarkableConfig_Test
 {

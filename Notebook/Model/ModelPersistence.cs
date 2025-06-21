@@ -1,7 +1,7 @@
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace PDFNote.Model;
+namespace Notebook;
 
 public static class ModelPersister
 {
@@ -40,7 +40,7 @@ public static class ModelPersister
     {
         var result = new Spec();
 
-        result.Device = new(Remarkable.DeviceSKU.RemarkablePaperPro, Orientation.Portrait, Remarkable.Handedness.Right);
+        result.Device = new(DeviceSKU.RemarkablePaperPro, Orientation.Portrait, Handedness.Right);
 
         return result;
     }
