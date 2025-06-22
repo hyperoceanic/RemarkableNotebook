@@ -1,3 +1,5 @@
+using QuestPDF.Infrastructure;
+
 namespace Notebook.TableOfContents;
 
 using QuestPDF.Fluent;
@@ -29,6 +31,47 @@ public class DefaultTOC : IPagesWriter
                 .FontSize(96)
                 .FontFamily(fontFamily)
                 .FontColor(fontColor);
+
+            var content = page.Content();
+
+            content.Table(table =>
+            {
+                table.ColumnsDefinition(columns => { columns.RelativeColumn(); });
+
+                table.Header(header =>
+                {
+                    header.Cell().Element(CellStyle); // Draw line across as table header
+
+                    IContainer CellStyle(IContainer container)
+                    {
+                        return container
+                            .Background(DeviceUtils.GetColor(state.Spec.Color))
+                            .PaddingVertical(8)
+                            .PaddingHorizontal(16);
+                    }
+                });
+
+                for (var x = 0; x < state.Spec.PageCount; x++)
+                    table.Cell().ColumnSpan(1)
+                        .Section($"NumberedPagesContent-{x}") // target for link back
+                        .Element(CellStyle)
+                        .SectionLink($"NumberedPages-{x}") // link to page
+                        .Text($"{x + 1}").FontSize(42F)
+                        ;
+
+                IContainer CellStyle(IContainer container)
+                {
+                    if (state.Spec.Device.Handedness == Handedness.Right)
+                        return container
+                            .Border(1F)
+                            .AlignRight()
+                            .Padding(20);
+                    return container
+                        .Border(1)
+                        .AlignLeft()
+                        .Padding(10);
+                }
+            }); // EOF Table
         });
         return state;
     }

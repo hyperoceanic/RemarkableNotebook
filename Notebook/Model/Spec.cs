@@ -14,15 +14,16 @@ public record PageDimensions(int Height, int Width);
 
 public class Spec
 {
-    const string revision = "a";
+    const string Revision = "a";
     public Device? Device { get; set; }
 
     public String Color { get; set; }
+    public int PageCount { get; set; } = 100;
 
     public Cover? Cover { get; set; }
     public TOCSpec? TOC { get; set; }
 
     [YamlIgnore]
     public string FileName =>
-        $"{Enum.GetName(Device.SKU)}_{Enum.GetName(Device.Orientation)}_{Enum.GetName(Device.Handedness)}_{revision}.pdf";
+        $"{Enum.GetName(Device.SKU)}_{Enum.GetName(Device.Orientation)}_{Enum.GetName(Device.Handedness)}_{Revision}.pdf";
 }
