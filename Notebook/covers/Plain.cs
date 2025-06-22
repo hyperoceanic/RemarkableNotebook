@@ -1,7 +1,7 @@
+namespace Notebook.Covers;
+
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
-
-namespace Notebook.Covers;
 
 /// <summary>
 /// Creates a blank front page. No text, with a border in the specified colour.,

@@ -1,7 +1,7 @@
+namespace Notebook.Covers;
+
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
-
-namespace Notebook.Covers;
 
 public class ExerciseBook : IPagesWriter
 {
