@@ -13,6 +13,9 @@ public static class NotebookBuilder
 
         var result = Document.Create(container =>
         {
+
+            DocState state = new DocState(spec, container);
+            
             container.Page(page =>
             {
                 page.Margin(50);

@@ -45,6 +45,9 @@ public static class ModelPersister
         result.Device.orientation = Orientation.Portrait;
         result.Device.handedness = Handedness.Right;
 
+        result.Cover = new Cover();
+        result.Cover.style = CoverStyle.Plain;
+
         return result;
     }
 
