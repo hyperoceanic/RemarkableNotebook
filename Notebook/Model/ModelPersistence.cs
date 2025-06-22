@@ -1,3 +1,4 @@
+using Notebook.Covers;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -28,8 +29,8 @@ public static class ModelPersister
     public static void Save(Spec spec, string filename)
     {
         var serializer = new SerializerBuilder()
-          .WithNamingConvention(PascalCaseNamingConvention.Instance)
-          .Build();
+            .WithNamingConvention(PascalCaseNamingConvention.Instance)
+            .Build();
 
         var yaml = serializer.Serialize(spec);
 
@@ -41,14 +42,13 @@ public static class ModelPersister
         var result = new Spec();
 
         result.Device = new Device();
-        result.Device.sku = DeviceSKU.RemarkablePaperPro;
-        result.Device.orientation = Orientation.Portrait;
-        result.Device.handedness = Handedness.Right;
+        result.Device.SKU = DeviceSKU.RemarkablePaperPro;
+        result.Device.Orientation = Orientation.Portrait;
+        result.Device.Handedness = Handedness.Right;
 
         result.Cover = new Cover();
-        result.Cover.style = CoverStyle.Plain;
+        result.Cover.Style = CoverStyle.Plain;
 
         return result;
     }
-
 }

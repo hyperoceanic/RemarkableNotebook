@@ -1,3 +1,4 @@
+using Notebook.Covers;
 using YamlDotNet.Serialization;
 
 namespace Notebook;
@@ -17,5 +18,6 @@ public class Spec
     public Cover? Cover { get; set; }
 
     [YamlIgnore]
-    public string FileName => $"{nameof(this.Device.sku)}_{nameof(this.Device.orientation)}_{nameof(this.Device.handedness)}_{revision}.pdf";
+    public string FileName =>
+        $"{Enum.GetName(Device.SKU)}_{Enum.GetName(Device.Orientation)}_{Enum.GetName(Device.Handedness)}_{revision}.pdf";
 }

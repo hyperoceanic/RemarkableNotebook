@@ -1,19 +1,20 @@
 using QuestPDF.Infrastructure;
 
-namespace  Notebook;
+namespace Notebook;
 
 public class DocState
 {
-    public IDocumentContainer container { get; }
-    public Spec spec { get; }
-
     public DocState(Spec spec, IDocumentContainer container)
     {
-        this.spec = spec;
-        this.container = container;
+        Spec = spec;
+        Container = container;
     }
+
+    public required IDocumentContainer Container { get; init; }
+    public required Spec Spec { get; init; }
 }
-public interface IPageSetWriter
+
+public interface IPagesWriter
 {
     /// <summary>
     /// Create the main page for this writer

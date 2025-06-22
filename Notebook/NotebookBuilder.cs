@@ -1,42 +1,64 @@
+using Notebook.Covers;
 using QuestPDF;
 using QuestPDF.Fluent;
-using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 
 namespace Notebook;
 
 public static class NotebookBuilder
 {
-    public static void Build(Spec spec)
+    private static IList<IPagesWriter> GetPagesWriters(Spec spec)
     {
-        QuestPDF.Settings.License = LicenseType.Community;
+        var result = new List<IPagesWriter>();
 
-        var result = Document.Create(container =>
+        var x = false;
+
+        var w = x switch
         {
+            true => "blue",
+            false => "green"
+        };
 
-            DocState state = new DocState(spec, container);
-            
-            container.Page(page =>
-            {
-                page.Margin(50);
-
-                page.Header().Height(100).Background(Colors.Grey.Lighten1);
-                page.Content().Background(Colors.Grey.Lighten3);
-                page.Footer().Height(50).Background(Colors.Grey.Lighten1);
-            });
-
-
-        })
-        .WithSettings(new DocumentSettings
+        IPagesWriter? cov = spec.Cover.Style switch
         {
-            PdfA = false,
-            CompressDocument = true,
-            ImageCompressionQuality = ImageCompressionQuality.High,
-            ImageRasterDpi = spec.Device.DPi,
-            ContentDirection = ContentDirection.LeftToRight
-        });
+            CoverStyle.Plain => new PlainCover(),
+            CoverStyle.Exercise => new BlankCover(),
+            _ => null
+        };
 
-        result.GeneratePdf(spec.FileName);
+        if (cov != null) result.Add(cov);
+
+        return result;
     }
 
+    public static void Build(Spec spec)
+    {
+        Settings.License = LicenseType.Community;
+
+        Console.WriteLine($"Starting document {spec.FileName}");
+
+        var writers = GetPagesWriters(spec);
+
+        var result = Document.Create(container =>
+            {
+                var state = new DocState(spec, container)
+                {
+                    Container = container,
+                    Spec = spec
+                };
+
+                foreach (var writer in writers) writer.WriteBody(state);
+            })
+            .WithSettings(new DocumentSettings
+            {
+                PdfA = false,
+                CompressDocument = true,
+                ImageCompressionQuality = ImageCompressionQuality.High,
+                ImageRasterDpi = spec.Device.DPi,
+                ContentDirection = ContentDirection.LeftToRight
+            });
+
+        result.GeneratePdf(spec.FileName);
+        Console.WriteLine($"Finished document {spec.FileName}");
+    }
 }

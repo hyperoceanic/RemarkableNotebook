@@ -1,19 +1,18 @@
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
-using QuestPDF.Infrastructure;
 
-namespace Notebook;
+namespace Notebook.Covers;
 
 /// <summary>
 /// Creates a blank front page. No text, no colours.
 /// </summary>
-public class BlankCover : IPageSetWriter
+public class BlankCover : IPagesWriter
 {
     public DocState WriteBody(DocState state)
     {
-        state.container.Page(page =>
+        state.Container.Page(page =>
         {
-            page.Size(state.spec.Device.Height, state.spec.Device.Width);
+            page.Size(state.Spec.Device.Width, state.Spec.Device.Height);
             page.PageColor(Colors.White);
         });
         return state;
