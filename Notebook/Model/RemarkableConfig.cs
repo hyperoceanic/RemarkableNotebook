@@ -2,14 +2,17 @@ namespace Notebook;
 
 public class Device
 {
+    public DeviceSKU SKU { get; set; }
+    public Orientation Orientation { get; set; }
+    public Handedness Handedness { get; set; }
 
-    public DeviceSKU sku { get; set; }
-    public Orientation orientation { get; set; }
-     public Handedness handedness { get; set; }
-    internal int Height { get => DeviceUtils.GetDeviceDimensions(sku, orientation).Height; }
-    internal int Width { get => DeviceUtils.GetDeviceDimensions(sku, orientation).Width; }
+    internal int Height => DeviceUtils.GetDeviceDimensions(SKU, Orientation).Height;
 
-    internal int DPi { get => DeviceUtils.DPI(sku); }
+    internal int Width => DeviceUtils.GetDeviceDimensions(SKU, Orientation).Width;
+
+    internal int DPi => DeviceUtils.DPI(SKU);
+
+    internal string FileName => $"{Enum.GetName(SKU)}_{Enum.GetName(Orientation)}_{Enum.GetName(Handedness)}";
 }
 
 /// <summary>
@@ -30,7 +33,6 @@ public enum Handedness
     Right
 }
 
-
 public static class DeviceUtils
 {
     /// <summary>
@@ -40,14 +42,14 @@ public static class DeviceUtils
     /// <param name="orientation">Portrait or Landscape</param>
     /// <returns></returns>
     public static PageDimensions GetDeviceDimensions(DeviceSKU sku, Orientation orientation) =>
-    (sku, orientation) switch
-    {
-        (DeviceSKU.RemarkablePaperPro, Orientation.Portrait) => new(2160, 1620),
-        (DeviceSKU.RemarkablePaperPro, Orientation.Landscape) => new(1620, 2160),
-        (DeviceSKU.Remarkable2, Orientation.Portrait) => new(1872, 1404),
-        (DeviceSKU.Remarkable2, Orientation.Landscape) => new(1404, 1872),
-        (_, _) => new(0, 0)
-    };
+        (sku, orientation) switch
+        {
+            (DeviceSKU.RemarkablePaperPro, Orientation.Portrait) => new PageDimensions(2160, 1620),
+            (DeviceSKU.RemarkablePaperPro, Orientation.Landscape) => new PageDimensions(1620, 2160),
+            (DeviceSKU.Remarkable2, Orientation.Portrait) => new PageDimensions(1872, 1404),
+            (DeviceSKU.Remarkable2, Orientation.Landscape) => new PageDimensions(1404, 1872),
+            (_, _) => new PageDimensions(0, 0)
+        };
 
 
     public static int DPI(DeviceSKU sku) => sku switch
@@ -56,6 +58,4 @@ public static class DeviceUtils
         DeviceSKU.Remarkable2 => 226,
         _ => 229
     };
-
 }
-
