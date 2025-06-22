@@ -41,13 +41,17 @@ public static class ModelPersister
     {
         var result = new Spec();
 
+        result.Color = "01579B";
+
         result.Device = new Device();
         result.Device.SKU = DeviceSKU.RemarkablePaperPro;
         result.Device.Orientation = Orientation.Portrait;
         result.Device.Handedness = Handedness.Right;
 
         result.Cover = new Cover();
-        result.Cover.Style = CoverStyle.Plain;
+        result.Cover.Style = CoverStyle.Exercise;
+        result.Cover.TopOval = OvalStyle.Tall;
+        result.Cover.LowOval = OvalStyle.Short;
 
         return result;
     }

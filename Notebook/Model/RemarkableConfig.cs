@@ -51,11 +51,15 @@ public static class DeviceUtils
             (_, _) => new PageDimensions(0, 0)
         };
 
-
     public static int DPI(DeviceSKU sku) => sku switch
     {
         DeviceSKU.RemarkablePaperPro => 229,
         DeviceSKU.Remarkable2 => 226,
         _ => 229
     };
+
+    public static QuestPDF.Infrastructure.Color GetColor(string colorHex) =>
+        string.IsNullOrEmpty(colorHex)
+            ? QuestPDF.Helpers.Colors.White
+            : QuestPDF.Infrastructure.Color.FromHex(colorHex);
 }

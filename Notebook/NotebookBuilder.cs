@@ -22,7 +22,7 @@ public static class NotebookBuilder
         IPagesWriter? cov = spec.Cover.Style switch
         {
             CoverStyle.Plain => new PlainCover(),
-            CoverStyle.Exercise => new BlankCover(),
+            CoverStyle.Exercise => new ExerciseBook(),
             _ => null
         };
 

@@ -19,7 +19,7 @@ public enum OvalStyle
 public class Cover
 {
     public CoverStyle Style { get; set; }
-    public OvalStyle? TopOval { get; set; }
-    public OvalStyle? MidOval { get; set; }
-    public OvalStyle? LowOval { get; set; }
+    public OvalStyle? TopOval { get; set; } = OvalStyle.None;
+    public OvalStyle? MidOval { get; set; } = OvalStyle.None;
+    public OvalStyle? LowOval { get; set; } = OvalStyle.None;
 }
