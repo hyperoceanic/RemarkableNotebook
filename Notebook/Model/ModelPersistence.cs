@@ -1,4 +1,5 @@
 using Notebook.Covers;
+using Notebook.Pages;
 using Notebook.TableOfContents;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -56,6 +57,9 @@ public static class ModelPersister
 
         result.TOC = new TOCSpec();
         result.TOC.Style = TOCStyle.Default;
+
+        result.Pages = new PagesSpec();
+        result.Pages.Style = PageStyle.Default;
 
         return result;
     }
