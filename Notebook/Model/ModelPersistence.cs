@@ -1,4 +1,5 @@
 using Notebook.Covers;
+using Notebook.TableOfContents;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -52,6 +53,9 @@ public static class ModelPersister
         result.Cover.Style = CoverStyle.Exercise;
         result.Cover.TopOval = OvalStyle.Tall;
         result.Cover.LowOval = OvalStyle.Short;
+
+        result.TOC = new TOCSpec();
+        result.TOC.Style = TOCStyle.Default;
 
         return result;
     }
