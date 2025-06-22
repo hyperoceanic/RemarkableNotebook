@@ -3,10 +3,12 @@ namespace Notebook.Pages;
 public enum PageStyle
 {
     None,
-    Default
+    Blank,
+    Lined,
+    Dotted
 }
 
 public class PagesSpec
 {
-    public PageStyle Style { get; set; } = PageStyle.Default;
+    public PageStyle Style { get; set; } = PageStyle.Blank;
 }

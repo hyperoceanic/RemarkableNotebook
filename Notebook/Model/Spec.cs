@@ -22,7 +22,7 @@ public class Spec
 
     public Cover? Cover { get; set; }
     public TOCSpec? TOC { get; set; }
-    public PagesSpec Pages { get; set; }
+    public PagesSpec? Pages { get; set; }
 
     [YamlIgnore]
     public string FileName =>

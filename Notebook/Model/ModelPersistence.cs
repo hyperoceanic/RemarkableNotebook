@@ -59,7 +59,7 @@ public static class ModelPersister
         result.TOC.Style = TOCStyle.Default;
 
         result.Pages = new PagesSpec();
-        result.Pages.Style = PageStyle.Default;
+        result.Pages.Style = PageStyle.Blank;
 
         return result;
     }

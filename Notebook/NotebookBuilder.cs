@@ -1,4 +1,5 @@
 using Notebook.Covers;
+using Notebook.Pages;
 using Notebook.TableOfContents;
 using QuestPDF;
 using QuestPDF.Fluent;
@@ -36,6 +37,14 @@ public static class NotebookBuilder
         };
 
         if (toc != null) result.Add(toc);
+
+        IPagesWriter? pages = spec.Pages.Style switch
+        {
+            PageStyle.Blank => new BlankPage(),
+            _ => null
+        };
+
+        if (pages != null) result.Add(pages);
 
         return result;
     }
