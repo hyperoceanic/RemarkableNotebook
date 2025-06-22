@@ -4,7 +4,7 @@ using QuestPDF.Helpers;
 namespace Notebook.Covers;
 
 /// <summary>
-///     Creates a blank front page. No text, no colours.
+/// Creates a blank front page. No text, with a border in the specified colour.,
 /// </summary>
 public class PlainCover : IPagesWriter
 {
@@ -14,13 +14,11 @@ public class PlainCover : IPagesWriter
         {
             page.Size(state.Spec.Device.Width, state.Spec.Device.Height);
 
-            page.PageColor(Colors.White);
+            var c = DeviceUtils.GetColor(state.Spec.Color);
+            page.PageColor(c);
 
             page.Margin(50);
-
-            page.Header().Height(100).Background(Colors.Grey.Lighten1);
             page.Content().Background(Colors.Grey.Lighten3);
-            page.Footer().Height(50).Background(Colors.Grey.Lighten1);
         });
         return state;
     }
