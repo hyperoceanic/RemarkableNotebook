@@ -45,7 +45,7 @@ public class DefaultTOC : IPagesWriter
                     IContainer CellStyle(IContainer container)
                     {
                         return container
-                            .Background(DeviceUtils.GetColor(state.Spec.Color))
+                            .Background(DeviceUtils.GetColor(state.Spec.ColorHex))
                             .PaddingVertical(8)
                             .PaddingHorizontal(16);
                     }

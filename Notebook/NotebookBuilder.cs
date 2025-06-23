@@ -1,3 +1,5 @@
+using System.Net;
+using Microsoft.VisualBasic;
 using Notebook.Covers;
 using Notebook.Pages;
 using Notebook.TableOfContents;
@@ -76,6 +78,8 @@ public static class NotebookBuilder
                 ContentDirection = ContentDirection.LeftToRight
             });
 
+        var fi = new FileInfo(spec.FileName);
+        Directory.CreateDirectory(fi.DirectoryName);
         result.GeneratePdf(spec.FileName);
         Console.WriteLine($"Finished document {spec.FileName}");
     }

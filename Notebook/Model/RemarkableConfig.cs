@@ -11,8 +11,6 @@ public class Device
     internal int Width => DeviceUtils.GetDeviceDimensions(SKU, Orientation).Width;
 
     internal int DPi => DeviceUtils.DPI(SKU);
-
-    internal string FileName => $"{Enum.GetName(SKU)}_{Enum.GetName(Orientation)}_{Enum.GetName(Handedness)}";
 }
 
 /// <summary>

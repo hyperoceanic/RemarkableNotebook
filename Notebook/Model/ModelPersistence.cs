@@ -43,7 +43,8 @@ public static class ModelPersister
     {
         var result = new Spec();
 
-        result.Color = "01579B";
+        result.ColorHex = "01579B";
+        result.ColorName = "Blue";
 
         result.Device = new Device();
         result.Device.SKU = DeviceSKU.RemarkablePaperPro;

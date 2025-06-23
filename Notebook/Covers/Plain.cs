@@ -13,7 +13,7 @@ public class PlainCover : IPagesWriter
         state.Container.Page(page =>
         {
             page.Size(state.Spec.Device.Width, state.Spec.Device.Height);
-            page.PageColor(DeviceUtils.GetColor(state.Spec.Color));
+            page.PageColor(DeviceUtils.GetColor(state.Spec.ColorHex));
 
             page.Margin(50);
             page.Content().Background(Colors.Grey.Lighten3);

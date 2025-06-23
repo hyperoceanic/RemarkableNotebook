@@ -11,7 +11,7 @@ public class ExerciseBook : IPagesWriter
         {
             page.Size(state.Spec.Device!.Width, state.Spec.Device.Height);
 
-            var c = DeviceUtils.GetColor(state.Spec.Color);
+            var c = DeviceUtils.GetColor(state.Spec.ColorHex);
 
             page.PageColor(c);
 
