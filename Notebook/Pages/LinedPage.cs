@@ -57,5 +57,5 @@ public class LinedPage : DefaultPage, IPagesWriter
 
     private int LinesCount(DocState state) =>
         // padding applies above AND below
-        BodyHeight(state) / 2 * LineSpacingValue(state.Spec.Pages.LineSpacing);
+        BodyHeight(state) / (2 * LineSpacingValue(state.Spec.Pages.LineSpacing));
 }
