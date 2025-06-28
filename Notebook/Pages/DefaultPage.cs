@@ -5,6 +5,12 @@ namespace Notebook.Pages;
 
 public class DefaultPage
 {
+    const int PaddingAllowance = 100;
+
+    protected int HeaderHeight => 130;
+
+    protected int FooterHeight => 80;
+
     protected void PageInit(DocState state, PageDescriptor page, int index)
     {
         page.Size(state.Spec.Device.Width, state.Spec.Device.Height);
@@ -15,7 +21,7 @@ public class DefaultPage
     {
         page.Header()
             .Section($"NumberedPages-{index}")
-            .Height(100F);
+            .Height(HeaderHeight);
     }
 
     protected virtual void PageBody(DocState state, PageDescriptor page, int index)
@@ -26,7 +32,7 @@ public class DefaultPage
     {
         page.Footer()
             .PaddingTop(10F)
-            .PaddingBottom(80F)
+            .PaddingBottom(FooterHeight)
             .AlignCenter()
             .SectionLink($"NumberedPagesContent-{index}")
             .Text($"Page {index + 1} ↩")
@@ -35,4 +41,9 @@ public class DefaultPage
             .FontFamily(Fonts.TimesNewRoman)
             .FontColor(Colors.Black);
     }
+
+    protected int BodyHeight(DocState state) => state.Spec.Device.Height
+                                                - PaddingAllowance
+                                                - HeaderHeight
+                                                - FooterHeight;
 }
