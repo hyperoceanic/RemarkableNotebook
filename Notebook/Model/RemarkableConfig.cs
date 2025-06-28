@@ -31,6 +31,25 @@ public enum Handedness
     Right
 }
 
+public enum RemarkableColor
+{
+    Black,
+    Gray,
+    White,
+    Blue,
+    Red,
+    Green,
+    Yellow,
+    Cyan,
+    Magenta,
+    YellowHighlight,
+    BlueHighlight,
+    PinkHighlight,
+    OrangeHighlight,
+    GreenHighlight,
+    GreyHighlight
+}
+
 public static class DeviceUtils
 {
     /// <summary>
@@ -56,8 +75,27 @@ public static class DeviceUtils
         _ => 229
     };
 
-    public static QuestPDF.Infrastructure.Color GetColor(string colorHex) =>
+    public static QuestPDF.Infrastructure.Color GetColorFromHexValue(string colorHex) =>
         string.IsNullOrEmpty(colorHex)
             ? QuestPDF.Helpers.Colors.White
             : QuestPDF.Infrastructure.Color.FromHex(colorHex);
+
+    public static QuestPDF.Infrastructure.Color GetColor(RemarkableColor color) => color switch
+    {
+        RemarkableColor.Black => QuestPDF.Helpers.Colors.Black,
+        RemarkableColor.Gray => QuestPDF.Helpers.Colors.Grey.Medium,
+        RemarkableColor.White => QuestPDF.Helpers.Colors.White,
+        RemarkableColor.Blue => QuestPDF.Helpers.Colors.Blue.Medium,
+        RemarkableColor.Red => QuestPDF.Helpers.Colors.Red.Medium,
+        RemarkableColor.Green => QuestPDF.Helpers.Colors.Green.Medium,
+        RemarkableColor.Yellow => QuestPDF.Helpers.Colors.Yellow.Medium,
+        RemarkableColor.Cyan => QuestPDF.Helpers.Colors.Cyan.Medium,
+        RemarkableColor.Magenta => QuestPDF.Helpers.Colors.Purple.Medium,
+        RemarkableColor.YellowHighlight => QuestPDF.Helpers.Colors.Yellow.Lighten2,
+        RemarkableColor.BlueHighlight => QuestPDF.Helpers.Colors.Blue.Lighten2,
+        RemarkableColor.PinkHighlight => QuestPDF.Helpers.Colors.Pink.Lighten2,
+        RemarkableColor.OrangeHighlight => QuestPDF.Helpers.Colors.Orange.Lighten2,
+        RemarkableColor.GreenHighlight => QuestPDF.Helpers.Colors.Green.Lighten2,
+        RemarkableColor.GreyHighlight => QuestPDF.Helpers.Colors.Grey.Lighten2
+    };
 }

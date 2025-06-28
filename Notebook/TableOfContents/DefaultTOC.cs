@@ -45,12 +45,13 @@ public class DefaultTOC : IPagesWriter
                     IContainer CellStyle(IContainer container)
                     {
                         return container
-                            .Background(DeviceUtils.GetColor(state.Spec.ColorHex))
+                            .Background(DeviceUtils.GetColor(state.Spec.BackgroundColor))
                             .PaddingVertical(8)
                             .PaddingHorizontal(16);
                     }
                 });
 
+                // Write out a line in the TOC for every page in the content section of the document.
                 for (var x = 0; x < state.Spec.PageCount; x++)
                     table.Cell().ColumnSpan(1)
                         .Section($"NumberedPagesContent-{x}") // target for link back

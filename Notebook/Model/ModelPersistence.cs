@@ -42,8 +42,7 @@ public static class ModelPersister
     public static Spec CreateSample() =>
         new()
         {
-            ColorHex = "01579B",
-            ColorName = "Blue",
+            BackgroundColor = RemarkableColor.Blue,
             PageCount = 100,
             Device = new Device
             {
