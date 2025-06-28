@@ -1,6 +1,4 @@
-﻿
-
-using Notebook;
+﻿using Notebook;
 using System.Diagnostics;
 
 
@@ -27,7 +25,5 @@ if (!File.Exists(configFileName))
 
 Spec spec = ModelPersister.Load(configFileName);
 
+
 NotebookBuilder.Build(spec);
-
-
-

@@ -71,11 +71,15 @@ public static class NotebookBuilder
 
                 foreach (var writer in writers) writer.WriteBody(state);
             })
+            .WithMetadata(new DocumentMetadata
+            {
+                Author = "Mark Smith",
+                CreationDate = DateTimeOffset.UtcNow,
+            })
             .WithSettings(new DocumentSettings
             {
                 PdfA = false,
                 CompressDocument = true,
-                ImageCompressionQuality = ImageCompressionQuality.High,
                 ImageRasterDpi = spec.Device.DPi,
                 ContentDirection = ContentDirection.LeftToRight
             });

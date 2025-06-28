@@ -10,6 +10,18 @@ using QuestPDF.Helpers;
 /// </summary>
 public class DefaultTOC : IPagesWriter
 {
+    private const string copyright =
+        """
+        Copyright, usage, attribution etc
+        You can use these notebooks in any way you wish with the following restrictions:
+
+        1. The copyright for these PDF files remains with Mark Smith.
+        2. You may not distribute them, in any form, blank or filled without obtaining prior written permission.
+        3. You may not sell them, in any form, blank or filled in without obtaining prior written permission.
+        4. You may not modify or remove any part of them, including any copyright or attribution notices.
+        5. You must try to at all times be kind.
+        """;
+
     public DocState WriteBody(DocState state)
     {
         state.Container.Page(page =>
@@ -72,6 +84,12 @@ public class DefaultTOC : IPagesWriter
                         .AlignLeft()
                         .Padding(10);
                 }
+
+                table.Cell()
+                    .Padding(12F)
+                    .Text(copyright)
+                    .FontSize(22F)
+                    ;
             }); // EOF Table
         });
         return state;
