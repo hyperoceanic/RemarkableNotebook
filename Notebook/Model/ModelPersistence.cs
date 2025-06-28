@@ -39,29 +39,31 @@ public static class ModelPersister
         File.WriteAllText(filename, yaml);
     }
 
-    public static Spec CreateSample()
-    {
-        var result = new Spec();
-
-        result.ColorHex = "01579B";
-        result.ColorName = "Blue";
-
-        result.Device = new Device();
-        result.Device.SKU = DeviceSKU.RemarkablePaperPro;
-        result.Device.Orientation = Orientation.Portrait;
-        result.Device.Handedness = Handedness.Right;
-
-        result.Cover = new Cover();
-        result.Cover.Style = CoverStyle.Exercise;
-        result.Cover.TopOval = OvalStyle.Tall;
-        result.Cover.LowOval = OvalStyle.Short;
-
-        result.TOC = new TOCSpec();
-        result.TOC.Style = TOCStyle.Default;
-
-        result.Pages = new PagesSpec();
-        result.Pages.Style = PageStyle.Blank;
-
-        return result;
-    }
+    public static Spec CreateSample() =>
+        new()
+        {
+            ColorHex = "01579B",
+            ColorName = "Blue",
+            PageCount = 100,
+            Device = new Device
+            {
+                SKU = DeviceSKU.Remarkable2,
+                Orientation = Orientation.Portrait,
+                Handedness = Handedness.Left
+            },
+            Cover = new Cover
+            {
+                Style = CoverStyle.Exercise,
+                TopOval = OvalStyle.Tall,
+                LowOval = OvalStyle.Short
+            },
+            TOC = new TOCSpec
+            {
+                Style = TOCStyle.Default
+            },
+            Pages = new PagesSpec
+            {
+                Style = PageStyle.Lined
+            }
+        };
 }
