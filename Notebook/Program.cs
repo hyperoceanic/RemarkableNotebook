@@ -25,5 +25,7 @@ if (!File.Exists(configFileName))
 
 Spec spec = ModelPersister.Load(configFileName);
 
+NotebookBuilder.BuildMany(spec);
 
-NotebookBuilder.Build(spec);
+
+//NotebookBuilder.Build(spec);

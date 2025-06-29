@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Net;
 using Microsoft.VisualBasic;
 using Notebook.Covers;
@@ -15,14 +16,6 @@ public static class NotebookBuilder
     private static IList<IPagesWriter> GetPagesWriters(Spec spec)
     {
         var result = new List<IPagesWriter>();
-
-        var x = false;
-
-        var w = x switch
-        {
-            true => "blue",
-            false => "green"
-        };
 
         IPagesWriter? cov = spec.Cover.Style switch
         {
@@ -53,6 +46,31 @@ public static class NotebookBuilder
         return result;
     }
 
+    public static void BuildMany(Spec spec)
+    {
+        BuildMany(spec, Handedness.Left, RemarkableColor.Blue);
+        BuildMany(spec, Handedness.Right, RemarkableColor.Blue);
+
+        BuildMany(spec, Handedness.Left, RemarkableColor.BlueP);
+        BuildMany(spec, Handedness.Right, RemarkableColor.BlueP);
+
+        BuildMany(spec, Handedness.Left, RemarkableColor.Green);
+        BuildMany(spec, Handedness.Right, RemarkableColor.Green);
+
+        BuildMany(spec, Handedness.Left, RemarkableColor.Cyan);
+        BuildMany(spec, Handedness.Right, RemarkableColor.Cyan);
+
+        BuildMany(spec, Handedness.Left, RemarkableColor.Gray);
+        BuildMany(spec, Handedness.Right, RemarkableColor.Gray);
+    }
+
+    public static void BuildMany(Spec spec, Handedness handedness, RemarkableColor backgroundColor)
+    {
+        spec.Device.Handedness = handedness;
+        spec.BackgroundColor = backgroundColor;
+        Build(spec);
+    }
+
     public static void Build(Spec spec)
     {
         Settings.License = LicenseType.Community;
@@ -75,6 +93,7 @@ public static class NotebookBuilder
             {
                 Author = "Mark Smith",
                 CreationDate = DateTimeOffset.UtcNow,
+                Title = spec.FileName
             })
             .WithSettings(new DocumentSettings
             {
@@ -84,9 +103,10 @@ public static class NotebookBuilder
                 ContentDirection = ContentDirection.LeftToRight
             });
 
-        var fi = new FileInfo(spec.FileName);
+        var filename = $"../../../../../../Projects/blank-notebooks/{spec.FileName}";
+        var fi = new FileInfo(filename);
         Directory.CreateDirectory(fi.DirectoryName);
-        result.GeneratePdf(spec.FileName);
-        Console.WriteLine($"Finished document {spec.FileName}");
+        result.GeneratePdf(filename);
+        Console.WriteLine($"Finished document {filename}");
     }
 }

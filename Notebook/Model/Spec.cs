@@ -29,5 +29,6 @@ public class Spec
     public string FileName =>
         $"{Enum.GetName(Device.SKU)}" +
         $"/{Enum.GetName(Device.Handedness)}" +
-        $"/{Enum.GetName(Pages.Style)}_{Enum.GetName(BackgroundColor)}_{Enum.GetName(Device.Orientation)}_{Revision}.pdf";
+        $"/{Enum.GetName(Pages.Style)}_{Enum.GetName(Pages.LineSpacing)}_" +
+        $"{Enum.GetName(BackgroundColor)}_{Enum.GetName(Device.Orientation)}_{Revision}.pdf";
 }

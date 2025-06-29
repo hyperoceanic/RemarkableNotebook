@@ -21,7 +21,7 @@ public class LinedPage : DefaultPage, IPagesWriter
         var linesCount = LinesCount(state);
         var spacing = LineSpacingValue(state.Spec.Pages.LineSpacing);
 
-        Console.WriteLine($"Body Height: {bh}, Lines count: {linesCount}, Spacing: {spacing}");
+        // Console.WriteLine($"Body Height: {bh}, Lines count: {linesCount}, Spacing: {spacing}");
 
         var content = page.Content();
 
